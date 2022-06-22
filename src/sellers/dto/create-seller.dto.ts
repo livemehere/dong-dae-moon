@@ -28,9 +28,6 @@ export class CreateSellerDto {
   @IsString()
   agency_name;
 
-  @IsNumberString()
-  rank;
-
   @IsBoolean()
   notification_agree;
 }

@@ -23,7 +23,7 @@ export class Seller {
     type: 'varchar',
     length: 100,
     unique: true,
-    comment: '로그인 이메일',
+    comment: '이메일',
   })
   email: string;
 
@@ -45,7 +45,7 @@ export class Seller {
   @Column({ type: 'varchar', length: 100, comment: '상호명' })
   agency_name: string;
 
-  @Column({ type: 'int', comment: '랭크(권한 용도로 사용)' })
+  @Column({ type: 'int', default: 0, comment: '랭크(권한 용도로 사용)' })
   rank: number;
 
   @Column({ type: 'text', nullable: true, comment: 'FCM 토큰' })

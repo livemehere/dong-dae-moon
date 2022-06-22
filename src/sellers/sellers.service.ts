@@ -20,9 +20,13 @@ export class SellersService {
     newSeller.nickname = createSellerDto.nickname;
     newSeller.region = createSellerDto.region;
     newSeller.agency_name = createSellerDto.agency_name;
-    newSeller.rank = createSellerDto.rank;
     newSeller.notification_agree = createSellerDto.notification_agree;
-    return await this.sellerRepository.save(newSeller);
+
+    try {
+      return await this.sellerRepository.save(newSeller);
+    } catch (e) {
+      return e.driverError.sqlMessage;
+    }
   }
 
   findAll() {
@@ -30,14 +34,18 @@ export class SellersService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} seller`;
+    return this.sellerRepository.findOneBy({ id });
   }
 
-  update(id: number, updateSellerDto: UpdateSellerDto) {
-    return `This action updates a #${id} seller`;
+  async update(id: number, updateSellerDto: UpdateSellerDto) {
+    try {
+      return await this.sellerRepository.update(id, updateSellerDto);
+    } catch (e) {
+      return e.driverError.sqlMessage;
+    }
   }
 
   remove(id: number) {
-    return `This action removes a #${id} seller`;
+    return this.sellerRepository.delete(id);
   }
 }
