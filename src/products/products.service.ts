@@ -36,7 +36,7 @@ export class ProductsService {
 
   findAll() {
     return this.productRepository.find({
-      relations: ['buyer', 'images'],
+      relations: ['buyer', 'images', 'schedules'],
     });
   }
 
@@ -45,7 +45,7 @@ export class ProductsService {
       where: {
         id,
       },
-      relations: ['images'],
+      relations: ['buyer', 'images', 'schedules'],
     });
   }
 
@@ -53,7 +53,7 @@ export class ProductsService {
     try {
       return await this.productRepository.update(id, updateProductDto);
     } catch (e) {
-      return e.driverError.sqlMessage;
+      return e.driverError?.sqlMessage || e;
     }
   }
 

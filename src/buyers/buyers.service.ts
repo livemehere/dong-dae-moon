@@ -45,7 +45,7 @@ export class BuyersService {
     try {
       return await this.buyerRepository.update(id, updateBuyerDto);
     } catch (e) {
-      return e.driverError.sqlMessage;
+      return e.driverError?.sqlMessage || e;
     }
   }
 

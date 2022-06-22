@@ -42,7 +42,7 @@ let ProductsService = class ProductsService {
     }
     findAll() {
         return this.productRepository.find({
-            relations: ['buyer', 'images'],
+            relations: ['buyer', 'images', 'schedules'],
         });
     }
     findOne(id) {
@@ -50,15 +50,16 @@ let ProductsService = class ProductsService {
             where: {
                 id,
             },
-            relations: ['images'],
+            relations: ['buyer', 'images', 'schedules'],
         });
     }
     async update(id, updateProductDto) {
+        var _a;
         try {
             return await this.productRepository.update(id, updateProductDto);
         }
         catch (e) {
-            return e.driverError.sqlMessage;
+            return ((_a = e.driverError) === null || _a === void 0 ? void 0 : _a.sqlMessage) || e;
         }
     }
     remove(id) {

@@ -41,7 +41,7 @@ export class SellersService {
     try {
       return await this.sellerRepository.update(id, updateSellerDto);
     } catch (e) {
-      return e.driverError.sqlMessage;
+      return e.driverError?.sqlMessage || e;
     }
   }
 

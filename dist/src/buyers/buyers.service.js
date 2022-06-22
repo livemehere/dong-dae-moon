@@ -49,11 +49,12 @@ let BuyersService = class BuyersService {
         return this.buyerRepository.findOneBy({ id });
     }
     async update(id, updateBuyerDto) {
+        var _a;
         try {
             return await this.buyerRepository.update(id, updateBuyerDto);
         }
         catch (e) {
-            return e.driverError.sqlMessage;
+            return ((_a = e.driverError) === null || _a === void 0 ? void 0 : _a.sqlMessage) || e;
         }
     }
     remove(id) {
