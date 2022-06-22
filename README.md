@@ -24,6 +24,10 @@ SET GLOBAL time_zone='+09:00'; //한국시간으로 맞추기 +9시간
 # RDS 쓰는거면 `파라미터 그룹 수정해야됨`
 ```
 
+## RDS 설정
+
+- 파라미터 그룹에서 time_zone, character_set 모두 변경해줘야됨 (한국시간, 한글)
+
 ## Docker
 
 ```bash
