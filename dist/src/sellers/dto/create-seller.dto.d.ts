@@ -1,10 +1,10 @@
 export declare class CreateSellerDto {
-    email: any;
-    password: any;
-    username: any;
-    phone: any;
-    nickname: any;
-    region: any;
-    agency_name: any;
-    notification_agree: any;
+    email: string;
+    password: string;
+    username: string;
+    phone: string;
+    nickname: string;
+    region: string;
+    agency_name: string;
+    notification_agree: boolean;
 }

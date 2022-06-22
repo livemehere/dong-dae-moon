@@ -1,6 +1,6 @@
 # 동대문 라이브 서버
 
-## typeorm sync 
+## typeorm sync
 
 ```bash
 # entity와 sync를 맞춰줌
@@ -20,6 +20,8 @@ npm i --save class-validator class-transformer
 
 ```sql
 SET GLOBAL time_zone='+09:00'; //한국시간으로 맞추기 +9시간
+
+# RDS 쓰는거면 `파라미터 그룹 수정해야됨`
 ```
 
 ## Docker

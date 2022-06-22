@@ -1,33 +1,27 @@
-import {
-  IsBoolean,
-  IsEmail,
-  IsNumber,
-  IsNumberString,
-  IsString,
-} from 'class-validator';
+import { IsBoolean, IsEmail, IsString } from 'class-validator';
 
 export class CreateSellerDto {
   @IsEmail()
-  email;
+  email: string;
 
   @IsString()
-  password;
+  password: string;
 
   @IsString()
-  username;
+  username: string;
 
   @IsString()
-  phone;
+  phone: string;
 
   @IsString()
-  nickname;
+  nickname: string;
 
   @IsString()
-  region;
+  region: string;
 
   @IsString()
-  agency_name;
+  agency_name: string;
 
   @IsBoolean()
-  notification_agree;
+  notification_agree: boolean;
 }

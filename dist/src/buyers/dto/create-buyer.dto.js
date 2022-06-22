@@ -9,41 +9,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateSellerDto = void 0;
+exports.CreateBuyerDto = void 0;
 const class_validator_1 = require("class-validator");
-class CreateSellerDto {
+class CreateBuyerDto {
 }
 __decorate([
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "email", void 0);
+], CreateBuyerDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "password", void 0);
+], CreateBuyerDto.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "username", void 0);
+], CreateBuyerDto.prototype, "username", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "phone", void 0);
+], CreateBuyerDto.prototype, "phone", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "nickname", void 0);
+], CreateBuyerDto.prototype, "business_registration", void 0);
+__decorate([
+    (0, class_validator_1.IsNumberString)(),
+    __metadata("design:type", Number)
+], CreateBuyerDto.prototype, "building_id", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "region", void 0);
+], CreateBuyerDto.prototype, "store_name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateSellerDto.prototype, "agency_name", void 0);
+], CreateBuyerDto.prototype, "store_address", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateBuyerDto.prototype, "building_floor", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateBuyerDto.prototype, "building_section", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateBuyerDto.prototype, "building_room", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
-], CreateSellerDto.prototype, "notification_agree", void 0);
-exports.CreateSellerDto = CreateSellerDto;
-//# sourceMappingURL=create-seller.dto.js.map
+], CreateBuyerDto.prototype, "notification_agree", void 0);
+exports.CreateBuyerDto = CreateBuyerDto;
+//# sourceMappingURL=create-buyer.dto.js.map
