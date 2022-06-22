@@ -36,7 +36,7 @@ export class ProductsService {
 
   findAll() {
     return this.productRepository.find({
-      relations: ['buyer'],
+      relations: ['buyer', 'images'],
     });
   }
 
@@ -45,7 +45,7 @@ export class ProductsService {
       where: {
         id,
       },
-      relations: ['buyer'],
+      relations: ['images'],
     });
   }
 

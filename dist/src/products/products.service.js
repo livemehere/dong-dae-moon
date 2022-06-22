@@ -42,7 +42,7 @@ let ProductsService = class ProductsService {
     }
     findAll() {
         return this.productRepository.find({
-            relations: ['buyer'],
+            relations: ['buyer', 'images'],
         });
     }
     findOne(id) {
@@ -50,7 +50,7 @@ let ProductsService = class ProductsService {
             where: {
                 id,
             },
-            relations: ['buyer'],
+            relations: ['images'],
         });
     }
     async update(id, updateProductDto) {

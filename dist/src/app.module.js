@@ -17,6 +17,7 @@ const app_service_1 = require("./app.service");
 const sellers_module_1 = require("./sellers/sellers.module");
 const buyers_module_1 = require("./buyers/buyers.module");
 const products_module_1 = require("./products/products.module");
+const images_module_1 = require("./images/images.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -39,6 +40,7 @@ AppModule = __decorate([
             sellers_module_1.SellersModule,
             buyers_module_1.BuyersModule,
             products_module_1.ProductsModule,
+            images_module_1.ImagesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

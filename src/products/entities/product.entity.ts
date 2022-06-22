@@ -1,9 +1,11 @@
 import { Buyer } from 'src/buyers/entities/buyer.entity';
+import { Image } from 'src/images/entities/image.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -31,4 +33,7 @@ export class Product {
   })
   @JoinColumn()
   buyer: Buyer;
+
+  @OneToMany(() => Image, (image) => image.product)
+  images: Image[];
 }
