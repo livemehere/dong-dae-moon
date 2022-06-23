@@ -35,7 +35,7 @@ let SellersService = class SellersService {
             return await this.sellerRepository.save(newSeller);
         }
         catch (e) {
-            return e.driverError.sqlMessage;
+            throw new common_1.BadRequestException(e.driverError.sqlMessage || e);
         }
     }
     findAll() {

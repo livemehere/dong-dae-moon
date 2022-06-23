@@ -1,7 +1,9 @@
+import { Apply } from './../../applys/entities/apply.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -67,4 +69,7 @@ export class Seller {
 
   @UpdateDateColumn({ name: 'updatedAt', comment: '수정일' })
   updatedAt: Date;
+
+  @OneToMany(() => Apply, (apply) => apply.seller)
+  applys: Apply[];
 }

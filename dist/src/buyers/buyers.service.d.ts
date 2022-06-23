@@ -5,7 +5,7 @@ import { Buyer } from './entities/buyer.entity';
 export declare class BuyersService {
     private buyerRepository;
     constructor(buyerRepository: Repository<Buyer>);
-    create(createBuyerDto: CreateBuyerDto): Promise<any>;
+    create(createBuyerDto: CreateBuyerDto): Promise<Buyer>;
     findAll(): Promise<Buyer[]>;
     findOne(id: number): Promise<Buyer>;
     update(id: number, updateBuyerDto: UpdateBuyerDto): Promise<any>;

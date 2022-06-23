@@ -1,3 +1,4 @@
+import { Apply } from './../../applys/entities/apply.entity';
 export declare class Seller {
     id: number;
     userType: string;
@@ -14,4 +15,5 @@ export declare class Seller {
     notification_agree: boolean;
     createdAt: Date;
     updatedAt: Date;
+    applys: Apply[];
 }

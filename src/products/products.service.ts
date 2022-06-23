@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Buyer } from 'src/buyers/entities/buyer.entity';
 import { Repository } from 'typeorm';
@@ -30,7 +34,7 @@ export class ProductsService {
 
       return await this.productRepository.save(newProduct);
     } catch (e) {
-      return e.driverError.sqlMessage;
+      throw new BadRequestException(e.driverError.sqlMessage || e);
     }
   }
 

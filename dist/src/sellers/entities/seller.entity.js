@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Seller = void 0;
+const apply_entity_1 = require("./../../applys/entities/apply.entity");
 const typeorm_1 = require("typeorm");
 let Seller = class Seller {
 };
@@ -88,6 +89,10 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'updatedAt', comment: '수정일' }),
     __metadata("design:type", Date)
 ], Seller.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => apply_entity_1.Apply, (apply) => apply.seller),
+    __metadata("design:type", Array)
+], Seller.prototype, "applys", void 0);
 Seller = __decorate([
     (0, typeorm_1.Entity)()
 ], Seller);

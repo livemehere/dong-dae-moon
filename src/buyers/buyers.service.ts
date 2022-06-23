@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateBuyerDto } from './dto/create-buyer.dto';
@@ -29,7 +33,7 @@ export class BuyersService {
     try {
       return await this.buyerRepository.save(newBuyer);
     } catch (e) {
-      return e.driverError.sqlMessage;
+      throw new BadRequestException(e.driverError.sqlMessage || e);
     }
   }
 

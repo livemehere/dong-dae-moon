@@ -7,7 +7,7 @@ export declare class ProductsService {
     private productRepository;
     private buyerRepository;
     constructor(productRepository: Repository<Product>, buyerRepository: Repository<Buyer>);
-    create(createProductDto: CreateProductDto): Promise<any>;
+    create(createProductDto: CreateProductDto): Promise<Product>;
     findAll(): Promise<Product[]>;
     findOne(id: number): Promise<Product>;
     update(id: number, updateProductDto: UpdateProductDto): Promise<any>;

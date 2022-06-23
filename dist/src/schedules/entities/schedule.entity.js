@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Schedule = void 0;
+const apply_entity_1 = require("./../../applys/entities/apply.entity");
 const product_entity_1 = require("../../products/entities/product.entity");
 const typeorm_1 = require("typeorm");
 let Schedule = class Schedule {
@@ -26,6 +27,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'datetime' }),
     __metadata("design:type", Date)
 ], Schedule.prototype, "date", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => apply_entity_1.Apply, (apply) => apply.schedule),
+    __metadata("design:type", Array)
+], Schedule.prototype, "applys", void 0);
 Schedule = __decorate([
     (0, typeorm_1.Entity)()
 ], Schedule);

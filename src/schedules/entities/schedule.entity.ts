@@ -1,5 +1,12 @@
+import { Apply } from './../../applys/entities/apply.entity';
 import { Product } from 'src/products/entities/product.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Schedule {
@@ -11,4 +18,7 @@ export class Schedule {
 
   @Column({ type: 'datetime' })
   date: Date;
+
+  @OneToMany(() => Apply, (apply) => apply.schedule)
+  applys: Apply[];
 }

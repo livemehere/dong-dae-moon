@@ -34,7 +34,7 @@ let SchedulesService = class SchedulesService {
             return await this.scheduleRepository.save(newSchedule);
         }
         catch (e) {
-            return e;
+            throw new common_1.BadRequestException(e.driverError.sqlMessage || e);
         }
     }
     findAll() {

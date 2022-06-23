@@ -37,7 +37,7 @@ let ProductsService = class ProductsService {
             return await this.productRepository.save(newProduct);
         }
         catch (e) {
-            return e.driverError.sqlMessage;
+            throw new common_1.BadRequestException(e.driverError.sqlMessage || e);
         }
     }
     findAll() {

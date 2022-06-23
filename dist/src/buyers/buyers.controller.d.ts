@@ -4,7 +4,7 @@ import { UpdateBuyerDto } from './dto/update-buyer.dto';
 export declare class BuyersController {
     private readonly buyersService;
     constructor(buyersService: BuyersService);
-    create(createBuyerDto: CreateBuyerDto): Promise<any>;
+    create(createBuyerDto: CreateBuyerDto): Promise<import("./entities/buyer.entity").Buyer>;
     findAll(): Promise<import("./entities/buyer.entity").Buyer[]>;
     findOne(id: string): Promise<import("./entities/buyer.entity").Buyer>;
     update(id: string, updateBuyerDto: UpdateBuyerDto): Promise<any>;

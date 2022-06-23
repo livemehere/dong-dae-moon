@@ -39,7 +39,7 @@ let BuyersService = class BuyersService {
             return await this.buyerRepository.save(newBuyer);
         }
         catch (e) {
-            return e.driverError.sqlMessage;
+            throw new common_1.BadRequestException(e.driverError.sqlMessage || e);
         }
     }
     findAll() {

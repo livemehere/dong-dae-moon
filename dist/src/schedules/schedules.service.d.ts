@@ -7,7 +7,7 @@ export declare class SchedulesService {
     private scheduleRepository;
     private productRepository;
     constructor(scheduleRepository: Repository<Schedule>, productRepository: Repository<Product>);
-    create(createScheduleDto: CreateScheduleDto): Promise<any>;
+    create(createScheduleDto: CreateScheduleDto): Promise<Schedule>;
     findAll(): Promise<Schedule[]>;
     findOne(id: number): Promise<Schedule>;
     update(id: number, updateScheduleDto: UpdateScheduleDto): Promise<any>;

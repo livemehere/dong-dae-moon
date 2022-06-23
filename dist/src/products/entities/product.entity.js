@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
+const apply_entity_1 = require("./../../applys/entities/apply.entity");
 const schedule_entity_1 = require("./../../schedules/entities/schedule.entity");
 const buyer_entity_1 = require("../../buyers/entities/buyer.entity");
 const image_entity_1 = require("../../images/entities/image.entity");
@@ -51,6 +52,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => schedule_entity_1.Schedule, (schedule) => schedule.product),
     __metadata("design:type", Array)
 ], Product.prototype, "schedules", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => apply_entity_1.Apply, (apply) => apply.product),
+    __metadata("design:type", Array)
+], Product.prototype, "applys", void 0);
 Product = __decorate([
     (0, typeorm_1.Entity)()
 ], Product);

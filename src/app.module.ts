@@ -10,6 +10,7 @@ import { BuyersModule } from './buyers/buyers.module';
 import { ProductsModule } from './products/products.module';
 import { ImagesModule } from './images/images.module';
 import { SchedulesModule } from './schedules/schedules.module';
+import { ApplysModule } from './applys/applys.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { SchedulesModule } from './schedules/schedules.module';
     ProductsModule,
     ImagesModule,
     SchedulesModule,
+    ApplysModule,
   ],
   controllers: [AppController],
   providers: [AppService],
