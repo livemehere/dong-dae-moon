@@ -4,9 +4,9 @@ import { UpdateScheduleDto } from './dto/update-schedule.dto';
 export declare class SchedulesController {
     private readonly schedulesService;
     constructor(schedulesService: SchedulesService);
-    create(createScheduleDto: CreateScheduleDto): string;
+    create(createScheduleDto: CreateScheduleDto): Promise<any>;
     findAll(): Promise<import("./entities/schedule.entity").Schedule[]>;
     findOne(id: string): Promise<import("./entities/schedule.entity").Schedule>;
     update(id: string, updateScheduleDto: UpdateScheduleDto): Promise<any>;
-    remove(id: string): string;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

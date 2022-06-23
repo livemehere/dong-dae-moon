@@ -18,7 +18,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateScheduleDto.prototype, "product_id", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateScheduleDto.prototype, "date", void 0);
 exports.CreateScheduleDto = CreateScheduleDto;

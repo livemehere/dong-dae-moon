@@ -13,22 +13,42 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SchedulesService = void 0;
+const product_entity_1 = require("../products/entities/product.entity");
 const schedule_entity_1 = require("./entities/schedule.entity");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 let SchedulesService = class SchedulesService {
-    constructor(scheduleRepository) {
+    constructor(scheduleRepository, productRepository) {
         this.scheduleRepository = scheduleRepository;
+        this.productRepository = productRepository;
     }
-    create(createScheduleDto) {
-        return 'This action adds a new schedule';
+    async create(createScheduleDto) {
+        try {
+            const product = await this.productRepository.findOneBy({
+                id: createScheduleDto.product_id,
+            });
+            const newSchedule = new schedule_entity_1.Schedule();
+            newSchedule.product = product;
+            newSchedule.date = createScheduleDto.date;
+            return await this.scheduleRepository.save(newSchedule);
+        }
+        catch (e) {
+            return e;
+        }
     }
     findAll() {
-        return this.scheduleRepository.find();
+        return this.scheduleRepository.find({
+            relations: ['product'],
+        });
     }
     findOne(id) {
-        return this.scheduleRepository.findOneBy({ id });
+        return this.scheduleRepository.findOne({
+            where: {
+                id,
+            },
+            relations: ['product'],
+        });
     }
     async update(id, updateScheduleDto) {
         var _a;
@@ -40,13 +60,15 @@ let SchedulesService = class SchedulesService {
         }
     }
     remove(id) {
-        return `This action removes a #${id} schedule`;
+        return this.scheduleRepository.delete(id);
     }
 };
 SchedulesService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(schedule_entity_1.Schedule)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], SchedulesService);
 exports.SchedulesService = SchedulesService;
 //# sourceMappingURL=schedules.service.js.map
