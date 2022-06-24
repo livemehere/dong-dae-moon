@@ -40,7 +40,7 @@ export class ProductsService {
 
   findAll() {
     return this.productRepository.find({
-      relations: ['buyer', 'images', 'schedules'],
+      relations: ['buyer', 'images', 'schedules', 'applys'],
     });
   }
 
@@ -49,7 +49,7 @@ export class ProductsService {
       where: {
         id,
       },
-      relations: ['buyer', 'images', 'schedules'],
+      relations: ['buyer', 'images', 'schedules', 'applys'],
     });
   }
 
