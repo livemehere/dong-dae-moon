@@ -29,7 +29,7 @@ import { AdminModule } from './admin/admin.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: ['dist/**/*.entity.{ts,js}'],
-      synchronize: true,
+      synchronize: true, //FIXME: 최종 배포시 false 로 변경
     }),
     SellersModule,
     BuyersModule,
