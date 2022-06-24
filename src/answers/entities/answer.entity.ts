@@ -1,3 +1,4 @@
+import { Buyer } from 'src/buyers/entities/buyer.entity';
 import { Admin } from './../../admin/entities/admin.entity';
 import { Question } from './../../questions/entities/question.entity';
 import { Seller } from './../../sellers/entities/seller.entity';
@@ -6,6 +7,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -17,17 +19,17 @@ export class Answer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Question, (question) => question.answer)
-  question: Question;
-
-  @ManyToOne(() => Admin, (admin) => admin.answers)
-  admin: Admin;
+  @ManyToOne(() => Buyer, (buyer) => buyer.answers)
+  buyer: Buyer;
 
   @Column({ type: 'varchar', length: 255 })
   title: string;
 
   @Column({ type: 'text' })
   content: string;
+
+  @Column()
+  questionId: number;
 
   @CreateDateColumn({ name: 'createdAt', comment: '생성일' })
   createdAt: Date;

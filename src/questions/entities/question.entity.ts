@@ -5,6 +5,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -17,13 +18,16 @@ export class Question {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product, (product) => product.questions)
+  @ManyToOne(() => Product, (product) => product.questions, {
+    cascade: true,
+  })
   product: Product;
 
   @ManyToOne(() => Seller, (seller) => seller.questions)
   seller: Seller;
 
-  @OneToOne(() => Answer, (answer) => answer.question)
+  @OneToOne(() => Answer, { cascade: ['insert'] })
+  @JoinColumn()
   answer: Answer;
 
   @Column({ type: 'varchar', length: 255 })
@@ -37,6 +41,4 @@ export class Question {
 
   @UpdateDateColumn({ name: 'updatedAt', comment: '수정일' })
   updatedAt: Date;
-
-  // TODO: answer 관계 추가
 }

@@ -8,5 +8,6 @@ import { BuyersController } from './buyers.controller';
   imports: [TypeOrmModule.forFeature([Buyer])],
   controllers: [BuyersController],
   providers: [BuyersService],
+  exports: [BuyersService],
 })
 export class BuyersModule {}

@@ -1,3 +1,4 @@
+import { Answer } from './../answers/entities/answer.entity';
 import { Seller } from './../sellers/entities/seller.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { Question } from './entities/question.entity';
@@ -18,6 +19,9 @@ export class QuestionsService {
 
     @InjectRepository(Seller)
     private sellerRepository: Repository<Seller>,
+
+    @InjectRepository(Answer)
+    private answerRepository: Repository<Answer>,
   ) {}
 
   async create(createQuestionDto: CreateQuestionDto) {
@@ -55,7 +59,7 @@ export class QuestionsService {
 
   findAll() {
     return this.questionRepository.find({
-      relations: ['product', 'seller'],
+      relations: ['product', 'seller', 'answer'],
     });
   }
 
@@ -64,7 +68,7 @@ export class QuestionsService {
       where: {
         id,
       },
-      relations: ['product', 'seller'],
+      relations: ['product', 'seller', 'answer'],
     });
   }
 
@@ -72,7 +76,12 @@ export class QuestionsService {
     return this.questionRepository.update(id, updateQuestionDto);
   }
 
-  remove(id: number) {
-    return this.questionRepository.delete(id);
+  async remove(id: number) {
+    const result = await this.questionRepository.delete(id);
+    await this.answerRepository.delete({
+      questionId: id,
+    });
+
+    return result;
   }
 }

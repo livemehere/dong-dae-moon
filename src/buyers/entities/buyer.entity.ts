@@ -1,8 +1,10 @@
+import { Answer } from './../../answers/entities/answer.entity';
 import { Product } from 'src/products/entities/product.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -84,6 +86,9 @@ export class Buyer {
     comment: '최근 라이브 신청 날짜',
   })
   latest_active: Date;
+
+  @OneToMany(() => Answer, (answer) => answer.buyer)
+  answers: Answer[];
 
   @Column({ type: 'boolean', comment: '푸시 알림 동의' })
   notification_agree: boolean;
