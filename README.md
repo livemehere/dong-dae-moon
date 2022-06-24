@@ -31,5 +31,5 @@ SET GLOBAL time_zone='+09:00'; //한국시간으로 맞추기 +9시간
 ## Docker
 
 ```bash
-docker run -d -it --name db -e MARIADB_ROOT_PASSWORD=dongdaemoon -p 3306:3306 -v maria_volume:/var/lib/mysql mariadb
+docker run -d -it --name db -e MARIADB_ROOT_PASSWORD=<PASSWORD> -p 3306:3306 -v maria_volume:/var/lib/mysql mariadb
 ```
