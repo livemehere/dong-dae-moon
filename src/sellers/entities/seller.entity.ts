@@ -1,3 +1,4 @@
+import { Question } from './../../questions/entities/question.entity';
 import { Apply } from './../../applys/entities/apply.entity';
 import {
   Column,
@@ -72,4 +73,7 @@ export class Seller {
 
   @OneToMany(() => Apply, (apply) => apply.seller)
   applys: Apply[];
+
+  @OneToMany(() => Question, (question) => question.seller)
+  questions: Question[];
 }

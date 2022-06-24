@@ -11,6 +11,9 @@ import { ProductsModule } from './products/products.module';
 import { ImagesModule } from './images/images.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ApplysModule } from './applys/applys.module';
+import { QuestionsModule } from './questions/questions.module';
+import { AnswersModule } from './answers/answers.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -34,6 +37,9 @@ import { ApplysModule } from './applys/applys.module';
     ImagesModule,
     SchedulesModule,
     ApplysModule,
+    QuestionsModule,
+    AnswersModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

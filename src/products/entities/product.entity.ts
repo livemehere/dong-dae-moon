@@ -1,3 +1,4 @@
+import { Question } from './../../questions/entities/question.entity';
 import { Apply } from './../../applys/entities/apply.entity';
 import { Schedule } from './../../schedules/entities/schedule.entity';
 import { Buyer } from 'src/buyers/entities/buyer.entity';
@@ -44,4 +45,7 @@ export class Product {
 
   @OneToMany(() => Apply, (apply) => apply.product)
   applys: Apply[];
+
+  @OneToMany(() => Question, (question) => question.product)
+  questions: Question[];
 }
