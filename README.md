@@ -1,5 +1,21 @@
 # 동대문 라이브 서버
 
+## TODO ⚒
+
+- [ ] CD 구축하기
+- [ ] S3 API 작성
+- [ ] SSL 설정
+- [ ] 로드 밸런싱 설정
+- [ ] Swagger 적용
+- [ ] 로그인 명확하게
+- [ ] JWT 사용유무
+
+## Deploy
+
+```bash
+npm start
+```
+
 ## typeorm sync
 
 ```bash
@@ -14,22 +30,30 @@ npm install --save @nestjs/serve-static
 npm install --save @nestjs/typeorm typeorm mysql2
 npm i --save @nestjs/config
 npm i --save class-validator class-transformer
-```
-
-## DB 세팅 쿼리
-
-```sql
-SET GLOBAL time_zone='+09:00'; //한국시간으로 맞추기 +9시간
-
-# RDS 쓰는거면 `파라미터 그룹 수정해야됨`
+npm i @nest-toolbox/http-logger-middleware
 ```
 
 ## RDS 설정
 
-- 파라미터 그룹에서 time_zone, character_set 모두 변경해줘야됨 (한국시간, 한글)
+- 파라미터 그룹에서 time_zone 변경
+- character_set 모두 변경
 
 ## Docker
 
 ```bash
 docker run -d -it --name db -e MARIADB_ROOT_PASSWORD=<PASSWORD> -p 3306:3306 -v maria_volume:/var/lib/mysql mariadb
+```
+
+## EC2 환경
+
+```bash
+nvm
+git
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+```
+
+## logs
+
+```bash
+$HOME/.pm2/logs
 ```
