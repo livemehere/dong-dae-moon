@@ -1,5 +1,4 @@
 import { Apply } from './../../applys/entities/apply.entity';
-import { Product } from 'src/products/entities/product.entity';
 import {
   Column,
   Entity,
@@ -7,6 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Schedule {

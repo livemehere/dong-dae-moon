@@ -1,12 +1,12 @@
 import { Answer } from './../answers/entities/answer.entity';
 import { Seller } from './../sellers/entities/seller.entity';
-import { Product } from 'src/products/entities/product.entity';
 import { Question } from './entities/question.entity';
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { Repository } from 'typeorm';
+import { Product } from '../products/entities/product.entity';
 
 @Injectable()
 export class QuestionsService {

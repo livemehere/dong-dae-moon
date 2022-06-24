@@ -1,5 +1,4 @@
 import { Schedule } from './../schedules/entities/schedule.entity';
-import { Product } from 'src/products/entities/product.entity';
 import { Seller } from './../sellers/entities/seller.entity';
 import { Apply } from './entities/apply.entity';
 import { Injectable, BadRequestException } from '@nestjs/common';
@@ -7,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateApplyDto } from './dto/create-apply.dto';
 import { UpdateApplyDto } from './dto/update-apply.dto';
 import { Repository } from 'typeorm';
+import { Product } from '../products/entities/product.entity';
 
 @Injectable()
 export class ApplysService {

@@ -1,6 +1,5 @@
 import { Answer } from './../../answers/entities/answer.entity';
 import { Seller } from './../../sellers/entities/seller.entity';
-import { Product } from 'src/products/entities/product.entity';
 import {
   Column,
   CreateDateColumn,
@@ -12,6 +11,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Question {

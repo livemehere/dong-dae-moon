@@ -1,7 +1,7 @@
 import { Schedule } from './../../schedules/entities/schedule.entity';
-import { Product } from 'src/products/entities/product.entity';
 import { Seller } from './../../sellers/entities/seller.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Apply {

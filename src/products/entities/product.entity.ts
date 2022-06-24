@@ -1,8 +1,6 @@
 import { Question } from './../../questions/entities/question.entity';
 import { Apply } from './../../applys/entities/apply.entity';
 import { Schedule } from './../../schedules/entities/schedule.entity';
-import { Buyer } from 'src/buyers/entities/buyer.entity';
-import { Image } from 'src/images/entities/image.entity';
 import {
   Column,
   CreateDateColumn,
@@ -13,6 +11,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Buyer } from '../../buyers/entities/buyer.entity';
+import { Image } from '../../images/entities/image.entity';
 
 @Entity()
 export class Product {

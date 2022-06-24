@@ -4,8 +4,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Buyer } from 'src/buyers/entities/buyer.entity';
 import { Repository } from 'typeorm';
+import { Buyer } from '../buyers/entities/buyer.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
