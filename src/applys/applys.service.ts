@@ -79,8 +79,12 @@ export class ApplysService {
     });
   }
 
-  update(id: number, updateApplyDto: UpdateApplyDto) {
-    return this.applyRepository.update(id, updateApplyDto);
+  async update(id: number, updateApplyDto: UpdateApplyDto) {
+    try {
+      return await this.applyRepository.update(id, updateApplyDto);
+    } catch (e) {
+      return e.message;
+    }
   }
 
   remove(id: number) {

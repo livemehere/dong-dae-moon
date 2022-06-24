@@ -9,6 +9,7 @@
 - [ ] Swagger 적용
 - [ ] 로그인 명확하게
 - [ ] JWT 사용유무
+- [ ] apply 같은 query 필요한 API 추가 및 over-fetching 줄이기
 
 ## Deploy
 

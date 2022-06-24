@@ -51,7 +51,7 @@ export class AnswersService {
   }
 
   findOne(id: number) {
-    return this.answerRepository.find({
+    return this.answerRepository.findOne({
       where: {
         id,
       },
