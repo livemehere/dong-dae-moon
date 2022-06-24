@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { HttpExceptionFilter } from 'utils/exception.filter';
 import { AppModule } from './app.module';
