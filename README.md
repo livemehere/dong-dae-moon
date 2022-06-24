@@ -14,6 +14,7 @@
 
 ```bash
 npm start
+npm restart
 ```
 
 ## typeorm sync
