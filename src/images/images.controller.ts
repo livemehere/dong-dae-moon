@@ -8,21 +8,21 @@ import {
   Delete,
   UseInterceptors,
   UploadedFiles,
+  UploadedFile,
 } from '@nestjs/common';
 import { ImagesService } from './images.service';
 import { CreateImageDto } from './dto/create-image.dto';
 import { UpdateImageDto } from './dto/update-image.dto';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('images')
 export class ImagesController {
   constructor(private readonly imagesService: ImagesService) {}
 
   @Post()
-  @UseInterceptors(FilesInterceptor('files'))
-  uploadFiles(@UploadedFiles() files: Array<Express.Multer.File>) {
-    console.log(files);
-    return 'files upload';
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadFile(@UploadedFile() file) {
+    return this.imagesService.upload(file);
   }
 
   @Get()
@@ -40,8 +40,8 @@ export class ImagesController {
     return this.imagesService.update(+id, updateImageDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.imagesService.remove(+id);
+  @Delete()
+  remove(@Body('key') key: string) {
+    return this.imagesService.deleteObject(process.env.AWS_S3_BUCKET_NAME, key);
   }
 }
