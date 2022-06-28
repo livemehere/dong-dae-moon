@@ -1,6 +1,9 @@
 import { IsBoolean, IsEmail, IsString } from 'class-validator';
 
 export class CreateSellerDto {
+  @IsString()
+  uid: string;
+
   @IsEmail()
   email: string;
 
@@ -12,6 +15,9 @@ export class CreateSellerDto {
 
   @IsString()
   phone: string;
+
+  @IsString()
+  country: string;
 
   @IsString()
   nickname: string;

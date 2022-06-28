@@ -14,6 +14,9 @@ export class Buyer {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ unique: true })
+  uid: string;
+
   @Column({
     type: 'varchar',
     default: 'buyer',

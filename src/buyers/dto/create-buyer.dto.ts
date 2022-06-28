@@ -1,6 +1,9 @@
 import { IsBoolean, IsEmail, IsNumberString, IsString } from 'class-validator';
 
 export class CreateBuyerDto {
+  @IsString()
+  uid: string;
+
   @IsEmail()
   email: string;
 

@@ -14,6 +14,9 @@ export class Seller {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ unique: true })
+  uid: string;
+
   @Column({
     type: 'varchar',
     default: 'seller',
@@ -38,6 +41,9 @@ export class Seller {
 
   @Column({ type: 'varchar', length: 30, comment: '전화번호' })
   phone: string;
+
+  @Column({ type: 'varchar', length: 100, comment: '국가' })
+  country: string;
 
   @Column({ type: 'varchar', length: 100, unique: true, comment: '닉네임' })
   nickname: string;
