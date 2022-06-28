@@ -14,19 +14,13 @@ export class Image {
   id: string;
 
   @Column()
-  originalName: string;
-
-  @Column()
-  encoding: string;
-
-  @Column()
-  mimeType: string;
-
-  @Column('decimal', { precision: 10, scale: 2 })
-  size: number;
+  key: string;
 
   @Column({ comment: 's3 업로드된 localtion url' })
   url: string;
+
+  @Column()
+  description: string;
 
   @CreateDateColumn()
   createdAt: Date;
