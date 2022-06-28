@@ -20,6 +20,7 @@ import { QuestionsModule } from './questions/questions.module';
 import { AnswersModule } from './answers/answers.module';
 import { AdminModule } from './admin/admin.module';
 import { HttpLoggerMiddleware } from '@nest-toolbox/http-logger-middleware';
+import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { HttpLoggerMiddleware } from '@nest-toolbox/http-logger-middleware';
     QuestionsModule,
     AnswersModule,
     AdminModule,
+    LoginModule,
   ],
   controllers: [AppController],
   providers: [AppService],
