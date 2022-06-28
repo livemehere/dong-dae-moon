@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
+import { iif } from 'rxjs';
 import { BuyersService } from './buyers.service';
 import { CreateBuyerDto } from './dto/create-buyer.dto';
 import { UpdateBuyerDto } from './dto/update-buyer.dto';
@@ -13,7 +23,11 @@ export class BuyersController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query('uid') uid: string) {
+    if (uid) {
+      return this.buyersService.findByUid(uid);
+    }
+
     return this.buyersService.findAll();
   }
 

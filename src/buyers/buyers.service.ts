@@ -18,6 +18,7 @@ export class BuyersService {
 
   async create(createBuyerDto: CreateBuyerDto) {
     const newBuyer = new Buyer();
+    newBuyer.uid = createBuyerDto.uid;
     newBuyer.email = createBuyerDto.email;
     newBuyer.password = createBuyerDto.password;
     newBuyer.username = createBuyerDto.username;
@@ -43,6 +44,14 @@ export class BuyersService {
 
   findOne(id: number) {
     return this.buyerRepository.findOneBy({ id });
+  }
+
+  findByUid(uid: string) {
+    return this.buyerRepository.findOne({
+      where: {
+        uid,
+      },
+    });
   }
 
   async update(id: number, updateBuyerDto: UpdateBuyerDto) {

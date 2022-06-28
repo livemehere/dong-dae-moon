@@ -13,10 +13,12 @@ export class SellersService {
   ) {}
   async create(createSellerDto: CreateSellerDto) {
     const newSeller = new Seller();
+    newSeller.uid = createSellerDto.uid;
     newSeller.email = createSellerDto.email;
     newSeller.password = createSellerDto.password;
     newSeller.username = createSellerDto.username;
     newSeller.phone = createSellerDto.phone;
+    newSeller.country = createSellerDto.country;
     newSeller.nickname = createSellerDto.nickname;
     newSeller.region = createSellerDto.region;
     newSeller.agency_name = createSellerDto.agency_name;
