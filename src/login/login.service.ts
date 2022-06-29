@@ -32,6 +32,7 @@ export class LoginService {
   }
 
   async loginWithGet(uid: string) {
+    if (!uid) throw new NotFoundException('uid must be provided');
     const seller = await this.sellerRepository.findOne({ where: { uid } });
     const buyer = await this.buyerRepository.findOne({ where: { uid } });
 
