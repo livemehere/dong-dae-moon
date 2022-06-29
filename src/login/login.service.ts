@@ -30,4 +30,20 @@ export class LoginService {
       return buyer;
     }
   }
+
+  async loginWithGet(uid: string) {
+    const seller = await this.sellerRepository.findOne({ where: { uid } });
+    const buyer = await this.buyerRepository.findOne({ where: { uid } });
+
+    if (!seller && !buyer) {
+      throw new NotFoundException(
+        `There is no seller or buyer with uid(${uid})`,
+      );
+    }
+    if (seller) {
+      return seller;
+    } else {
+      return buyer;
+    }
+  }
 }
