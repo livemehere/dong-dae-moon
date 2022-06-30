@@ -69,6 +69,76 @@ export class QuestionsService {
         id,
       },
       relations: ['buyer', 'seller', 'answer'],
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        buyer: {
+          id: true,
+          store_name: true,
+        },
+        seller: {
+          id: true,
+          nickname: true,
+          agency_name: true,
+        },
+      },
+    });
+  }
+
+  findByBuyerId(buyerId: number) {
+    return this.questionRepository.find({
+      where: {
+        buyer: {
+          id: buyerId,
+        },
+      },
+      relations: ['seller', 'answer'],
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        buyer: {
+          id: true,
+          store_name: true,
+        },
+        seller: {
+          id: true,
+          nickname: true,
+          agency_name: true,
+        },
+      },
+    });
+  }
+
+  findBySellerId(sellerId: number) {
+    return this.questionRepository.find({
+      where: {
+        seller: {
+          id: sellerId,
+        },
+      },
+      relations: ['buyer', 'answer'],
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        buyer: {
+          id: true,
+          store_name: true,
+        },
+        seller: {
+          id: true,
+          nickname: true,
+          agency_name: true,
+        },
+      },
     });
   }
 

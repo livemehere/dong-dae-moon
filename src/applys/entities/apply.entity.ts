@@ -15,13 +15,15 @@ export class Apply {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Seller, (seller) => seller.applys)
+  @ManyToOne(() => Seller, (seller) => seller.applys, { onDelete: 'CASCADE' })
   seller: Seller;
 
-  @ManyToOne(() => Buyer, (buyer) => buyer.applys)
+  @ManyToOne(() => Buyer, (buyer) => buyer.applys, { onDelete: 'CASCADE' })
   buyer: Buyer;
 
-  @ManyToOne(() => Schedule, (schedule) => schedule.applys)
+  @ManyToOne(() => Schedule, (schedule) => schedule.applys, {
+    onDelete: 'CASCADE',
+  })
   schedule: Schedule;
 
   @Column({ type: 'tinyint', default: 0 })
