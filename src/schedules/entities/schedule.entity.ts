@@ -17,7 +17,10 @@ export class Schedule {
   buyer: Buyer;
 
   @Column({ type: 'datetime' })
-  date: Date;
+  start_date: Date;
+
+  @Column({ type: 'datetime' })
+  end_date: Date;
 
   @OneToMany(() => Apply, (apply) => apply.schedule)
   applys: Apply[];

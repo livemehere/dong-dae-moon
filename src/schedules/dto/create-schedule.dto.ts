@@ -5,5 +5,8 @@ export class CreateScheduleDto {
   buyer_id: number;
 
   @IsDateString()
-  date: Date;
+  start_date: Date;
+
+  @IsDateString()
+  end_date: Date;
 }

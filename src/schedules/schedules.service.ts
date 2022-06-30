@@ -23,7 +23,8 @@ export class SchedulesService {
 
       const newSchedule = new Schedule();
       newSchedule.buyer = buyer;
-      newSchedule.date = createScheduleDto.date;
+      newSchedule.start_date = createScheduleDto.start_date;
+      newSchedule.end_date = createScheduleDto.end_date;
       return await this.scheduleRepository.save(newSchedule);
     } catch (e) {
       throw new BadRequestException(e.driverError.sqlMessage || e);
@@ -31,8 +32,16 @@ export class SchedulesService {
   }
 
   findAll() {
+    return this.scheduleRepository.find();
+  }
+
+  findByBuyer(buyerId: number) {
     return this.scheduleRepository.find({
-      // relations: ['buyer'],
+      where: {
+        buyer: {
+          id: buyerId,
+        },
+      },
     });
   }
 

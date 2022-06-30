@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ApplysService } from './applys.service';
 import { CreateApplyDto } from './dto/create-apply.dto';
@@ -21,7 +22,11 @@ export class ApplysController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() query) {
+    if (query.buyerId) {
+      return this.applysService.findByBuyer(+query.buyerId);
+    }
+
     return this.applysService.findAll();
   }
 

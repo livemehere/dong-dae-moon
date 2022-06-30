@@ -72,6 +72,17 @@ export class ApplysService {
     });
   }
 
+  async findByBuyer(buyerId: number) {
+    return this.applyRepository.find({
+      where: {
+        buyer: {
+          id: buyerId,
+        },
+      },
+      relations: ['seller'],
+    });
+  }
+
   findOne(id: number) {
     return this.applyRepository.findOne({
       where: { id },
