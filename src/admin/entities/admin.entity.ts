@@ -22,7 +22,7 @@ export class Admin {
   })
   email: string;
 
-  @Column({ type: 'varchar', length: 255, comment: '비밀번호' })
+  @Column({ type: 'varchar', length: 255, comment: '비밀번호', select: false })
   password: string;
 
   @Column({ type: 'boolean', default: false })

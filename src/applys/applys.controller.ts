@@ -23,8 +23,12 @@ export class ApplysController {
 
   @Get()
   findAll(@Query() query) {
+    // 특정 바이어가 예약받은 목록 with seller 정보
     if (query.buyerId) {
       return this.applysService.findByBuyer(+query.buyerId);
+    } else if (query.sellerId) {
+      // 특정 셀러의 예약한 목록(기록)
+      return this.applysService.findBySeller(+query.sellerId);
     }
 
     return this.applysService.findAll();

@@ -33,7 +33,7 @@ export class Seller {
   })
   email: string;
 
-  @Column({ type: 'varchar', length: 255, comment: '비밀번호' })
+  @Column({ type: 'varchar', length: 255, comment: '비밀번호', select: false })
   password: string;
 
   @Column({ type: 'varchar', length: 100, comment: '셀러 이름' })

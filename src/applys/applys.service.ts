@@ -72,7 +72,7 @@ export class ApplysService {
     });
   }
 
-  async findByBuyer(buyerId: number) {
+  findByBuyer(buyerId: number) {
     return this.applyRepository.find({
       where: {
         buyer: {
@@ -80,6 +80,34 @@ export class ApplysService {
         },
       },
       relations: ['seller'],
+      select: {
+        id: true,
+        status: true,
+        createdAt: true,
+        seller: {
+          id: true,
+          nickname: true,
+        },
+      },
+    });
+  }
+
+  findBySeller(sellerId: number) {
+    return this.applyRepository.find({
+      where: {
+        seller: {
+          id: sellerId,
+        },
+      },
+      relations: ['buyer'],
+      select: {
+        id: true,
+        status: true,
+        createdAt: true,
+        buyer: {
+          id: true,
+        },
+      },
     });
   }
 
