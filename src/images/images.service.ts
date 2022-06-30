@@ -1,4 +1,9 @@
-import { Injectable, Logger, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { S3 } from 'aws-sdk';
 import { UpdateImageDto } from './dto/update-image.dto';
 import { v4 as uuid } from 'uuid';
@@ -27,9 +32,7 @@ export class ImagesService {
       await this.create(result.Location, result.key, buyerId, description);
       return result;
     } catch (e) {
-      throw new BadRequestException(
-        'form-data 형식이 아니거나 업로드에 실패하였습니다',
-      );
+      throw new BadRequestException(e);
     }
   }
 
@@ -82,6 +85,9 @@ export class ImagesService {
         where: { id: buyerId },
       });
 
+      if (!buyer)
+        throw new NotFoundException(`id(${buyerId}) buyer is not exists`);
+
       const newImage = new Image();
       newImage.key = key;
       newImage.url = location;
@@ -108,7 +114,7 @@ export class ImagesService {
 
   async remove(key: string) {
     const image = await this.imageRepository.findOne({ where: { key } });
-    console.log(image);
+    if (!image) throw new NotFoundException(`key(${key}) is not exists`);
     return this.imageRepository.delete(image.id);
   }
 }
