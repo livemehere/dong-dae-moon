@@ -24,7 +24,6 @@ export class BuyersService {
       newBuyer.password = createBuyerDto.password;
       newBuyer.username = createBuyerDto.username;
       newBuyer.phone = createBuyerDto.phone;
-      newBuyer.business_registration = createBuyerDto.business_registration;
       newBuyer.building_id = createBuyerDto.building_id;
       newBuyer.store_name = createBuyerDto.store_name;
       newBuyer.store_address = createBuyerDto.store_address;

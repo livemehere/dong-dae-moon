@@ -46,7 +46,7 @@ export class Buyer {
   @Column({ type: 'varchar', length: 30, comment: '전화번호' })
   phone: string;
 
-  @Column({ type: 'text', comment: '사업자 등록증 사진 URL' })
+  @Column({ type: 'text', comment: '사업자 등록증 사진 URL', nullable: true })
   business_registration: string;
 
   @Column({ type: 'int', default: 0, comment: '빌딩 ID(참조)' })
