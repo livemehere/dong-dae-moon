@@ -32,7 +32,7 @@ export class SchedulesService {
 
   findAll() {
     return this.scheduleRepository.find({
-      relations: ['buyer'],
+      // relations: ['buyer'],
     });
   }
 
@@ -41,7 +41,7 @@ export class SchedulesService {
       where: {
         id,
       },
-      relations: ['buyer'],
+      // relations: ['buyer'],
     });
   }
 
