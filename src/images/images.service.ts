@@ -1,22 +1,21 @@
-import { Product } from './../products/entities/product.entity';
 import { Injectable, Logger, BadRequestException } from '@nestjs/common';
 import { S3 } from 'aws-sdk';
-import { CreateImageDto } from './dto/create-image.dto';
 import { UpdateImageDto } from './dto/update-image.dto';
 import { v4 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Image } from './entities/image.entity';
+import { Buyer } from '../buyers/entities/buyer.entity';
 @Injectable()
 export class ImagesService {
   constructor(
     @InjectRepository(Image)
     private imageRepository: Repository<Image>,
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>,
+    @InjectRepository(Buyer)
+    private buyerRepository: Repository<Buyer>,
   ) {}
 
-  async upload(file, productId, description) {
+  async upload(file, buyerId, description) {
     try {
       const { originalname } = file;
       const bucketS3 = process.env.AWS_S3_BUCKET_NAME;
@@ -25,7 +24,7 @@ export class ImagesService {
         bucketS3,
         originalname,
       );
-      await this.create(result.Location, result.key, productId, description);
+      await this.create(result.Location, result.key, buyerId, description);
       return result;
     } catch (e) {
       throw new BadRequestException(
@@ -75,18 +74,18 @@ export class ImagesService {
   async create(
     location: string,
     key: string,
-    productId: number,
+    buyerId: number,
     description: string,
   ) {
     try {
-      const product = await this.productRepository.findOne({
-        where: { id: productId },
+      const buyer = await this.buyerRepository.findOne({
+        where: { id: buyerId },
       });
 
       const newImage = new Image();
       newImage.key = key;
       newImage.url = location;
-      newImage.product = product;
+      newImage.buyer = buyer;
       newImage.description = description;
 
       return this.imageRepository.save(newImage);

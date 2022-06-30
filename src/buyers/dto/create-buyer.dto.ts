@@ -39,4 +39,11 @@ export class CreateBuyerDto {
 
   @IsBoolean()
   notification_agree: boolean;
+
+  // product 합친 부분
+  @IsString()
+  description: string;
+
+  @IsString()
+  tags: string;
 }

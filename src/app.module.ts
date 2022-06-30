@@ -12,7 +12,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SellersModule } from './sellers/sellers.module';
 import { BuyersModule } from './buyers/buyers.module';
-import { ProductsModule } from './products/products.module';
 import { ImagesModule } from './images/images.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ApplysModule } from './applys/applys.module';
@@ -40,7 +39,6 @@ import { LoginModule } from './login/login.module';
     }),
     SellersModule,
     BuyersModule,
-    ProductsModule,
     ImagesModule,
     SchedulesModule,
     ApplysModule,

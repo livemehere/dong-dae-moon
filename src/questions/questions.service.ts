@@ -1,3 +1,4 @@
+import { Buyer } from './../buyers/entities/buyer.entity';
 import { Answer } from './../answers/entities/answer.entity';
 import { Seller } from './../sellers/entities/seller.entity';
 import { Question } from './entities/question.entity';
@@ -6,7 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { Repository } from 'typeorm';
-import { Product } from '../products/entities/product.entity';
 
 @Injectable()
 export class QuestionsService {
@@ -14,8 +14,8 @@ export class QuestionsService {
     @InjectRepository(Question)
     private questionRepository: Repository<Question>,
 
-    @InjectRepository(Product)
-    private productnRepository: Repository<Product>,
+    @InjectRepository(Buyer)
+    private buyerRepository: Repository<Buyer>,
 
     @InjectRepository(Seller)
     private sellerRepository: Repository<Seller>,
@@ -25,13 +25,13 @@ export class QuestionsService {
   ) {}
 
   async create(createQuestionDto: CreateQuestionDto) {
-    const product = await this.productnRepository.findOneBy({
-      id: createQuestionDto.product_id,
+    const buyer = await this.buyerRepository.findOneBy({
+      id: createQuestionDto.buyer_id,
     });
 
-    if (!product) {
+    if (!buyer) {
       throw new BadRequestException(
-        `product(${createQuestionDto.product_id}) is not exists`,
+        `buyer(${createQuestionDto.buyer_id}) is not exists`,
       );
     }
 
@@ -49,7 +49,7 @@ export class QuestionsService {
       const newQuestion = new Question();
       newQuestion.title = createQuestionDto.title;
       newQuestion.content = createQuestionDto.content;
-      newQuestion.product = product;
+      newQuestion.buyer = buyer;
       newQuestion.seller = seller;
       return this.questionRepository.save(newQuestion);
     } catch (e) {
@@ -59,7 +59,7 @@ export class QuestionsService {
 
   findAll() {
     return this.questionRepository.find({
-      relations: ['product', 'seller', 'answer'],
+      relations: ['buyer', 'seller', 'answer'],
     });
   }
 
@@ -68,7 +68,7 @@ export class QuestionsService {
       where: {
         id,
       },
-      relations: ['product', 'seller', 'answer'],
+      relations: ['buyer', 'seller', 'answer'],
     });
   }
 

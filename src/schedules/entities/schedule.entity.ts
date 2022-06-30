@@ -1,3 +1,4 @@
+import { Buyer } from './../../buyers/entities/buyer.entity';
 import { Apply } from './../../applys/entities/apply.entity';
 import {
   Column,
@@ -6,15 +7,14 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Schedule {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product, (product) => product.schedules)
-  product: Product;
+  @ManyToOne(() => Buyer, (buyer) => buyer.schedules)
+  buyer: Buyer;
 
   @Column({ type: 'datetime' })
   date: Date;

@@ -1,3 +1,4 @@
+import { Image } from './../../images/entities/image.entity';
 import { Answer } from './../../answers/entities/answer.entity';
 import {
   Column,
@@ -8,6 +9,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Schedule } from '../../schedules/entities/schedule.entity';
+import { Apply } from '../../applys/entities/apply.entity';
+import { Question } from '../../questions/entities/question.entity';
 
 @Entity()
 export class Buyer {
@@ -53,6 +57,26 @@ export class Buyer {
 
   @Column({ type: 'varchar', length: 200, comment: '가게 주소' })
   store_address: string;
+
+  // product 에서 합쳐진 부분
+  @Column({ type: 'text', comment: '설명' })
+  description: string;
+
+  @Column({ type: 'varchar', length: 255, comment: '태그들' })
+  tags: string;
+
+  @OneToMany(() => Image, (image) => image.buyer)
+  images: Image[];
+
+  @OneToMany(() => Schedule, (schedule) => schedule.buyer)
+  schedules: Schedule[];
+
+  @OneToMany(() => Apply, (apply) => apply.buyer)
+  applys: Apply[];
+
+  @OneToMany(() => Question, (question) => question.buyer)
+  questions: Question[];
+  // end --
 
   @Column({
     type: 'varchar',

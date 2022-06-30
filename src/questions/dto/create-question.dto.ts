@@ -2,7 +2,7 @@ import { IsNumberString, IsString } from 'class-validator';
 
 export class CreateQuestionDto {
   @IsNumberString()
-  product_id: number;
+  buyer_id: number;
 
   @IsNumberString()
   seller_id: number;

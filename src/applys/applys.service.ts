@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateApplyDto } from './dto/create-apply.dto';
 import { UpdateApplyDto } from './dto/update-apply.dto';
 import { Repository } from 'typeorm';
-import { Product } from '../products/entities/product.entity';
+import { Buyer } from '../buyers/entities/buyer.entity';
 
 @Injectable()
 export class ApplysService {
@@ -17,8 +17,8 @@ export class ApplysService {
     @InjectRepository(Seller)
     private sellerRepository: Repository<Seller>,
 
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>,
+    @InjectRepository(Buyer)
+    private buyerRepository: Repository<Buyer>,
 
     @InjectRepository(Schedule)
     private ScheduleRepository: Repository<Schedule>,
@@ -29,8 +29,8 @@ export class ApplysService {
       id: createApplyDto.seller_id,
     });
 
-    const product = await this.productRepository.findOneBy({
-      id: createApplyDto.product_id,
+    const buyer = await this.buyerRepository.findOneBy({
+      id: createApplyDto.buyer_id,
     });
 
     const schedule = await this.ScheduleRepository.findOneBy({
@@ -43,9 +43,9 @@ export class ApplysService {
       );
     }
 
-    if (!product) {
+    if (!buyer) {
       throw new BadRequestException(
-        `id(${createApplyDto.product_id}) product is not exist`,
+        `id(${createApplyDto.buyer_id}) buyer is not exist`,
       );
     }
 
@@ -58,7 +58,7 @@ export class ApplysService {
     try {
       const newApply = new Apply();
       newApply.seller = seller;
-      newApply.product = product;
+      newApply.buyer = buyer;
       newApply.schedule = schedule;
       return this.applyRepository.save(newApply);
     } catch (e) {
@@ -68,14 +68,14 @@ export class ApplysService {
 
   findAll() {
     return this.applyRepository.find({
-      relations: ['seller', 'product', 'schedule'],
+      relations: ['seller', 'buyer', 'schedule'],
     });
   }
 
   findOne(id: number) {
     return this.applyRepository.findOne({
       where: { id },
-      relations: ['seller', 'product', 'schedule'],
+      relations: ['seller', 'buyer', 'schedule'],
     });
   }
 

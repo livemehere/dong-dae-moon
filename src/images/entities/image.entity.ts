@@ -1,3 +1,4 @@
+import { Buyer } from './../../buyers/entities/buyer.entity';
 import {
   Column,
   CreateDateColumn,
@@ -6,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Image {
@@ -28,6 +28,6 @@ export class Image {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => Product, (product) => product.images)
-  product: Product;
+  @ManyToOne(() => Buyer, (buyer) => buyer.images)
+  buyer: Buyer;
 }

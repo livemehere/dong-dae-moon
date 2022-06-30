@@ -1,28 +1,28 @@
+import { Buyer } from './../buyers/entities/buyer.entity';
 import { Schedule } from './entities/schedule.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
 import { Repository } from 'typeorm';
-import { Product } from '../products/entities/product.entity';
 
 @Injectable()
 export class SchedulesService {
   constructor(
     @InjectRepository(Schedule)
     private scheduleRepository: Repository<Schedule>,
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>,
+    @InjectRepository(Buyer)
+    private buyerRepository: Repository<Buyer>,
   ) {}
 
   async create(createScheduleDto: CreateScheduleDto) {
     try {
-      const product = await this.productRepository.findOneBy({
-        id: createScheduleDto.product_id,
+      const buyer = await this.buyerRepository.findOneBy({
+        id: createScheduleDto.buyer_id,
       });
 
       const newSchedule = new Schedule();
-      newSchedule.product = product;
+      newSchedule.buyer = buyer;
       newSchedule.date = createScheduleDto.date;
       return await this.scheduleRepository.save(newSchedule);
     } catch (e) {
@@ -32,7 +32,7 @@ export class SchedulesService {
 
   findAll() {
     return this.scheduleRepository.find({
-      relations: ['product'],
+      relations: ['buyer'],
     });
   }
 
@@ -41,7 +41,7 @@ export class SchedulesService {
       where: {
         id,
       },
-      relations: ['product'],
+      relations: ['buyer'],
     });
   }
 

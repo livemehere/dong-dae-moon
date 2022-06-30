@@ -11,19 +11,21 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Product } from '../../products/entities/product.entity';
+import { Buyer } from '../../buyers/entities/buyer.entity';
 
 @Entity()
 export class Question {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product, (product) => product.questions, {
-    cascade: true,
+  @ManyToOne(() => Buyer, (buyer) => buyer.questions, {
+    onDelete: 'CASCADE',
   })
-  product: Product;
+  buyer: Buyer;
 
-  @ManyToOne(() => Seller, (seller) => seller.questions)
+  @ManyToOne(() => Seller, (seller) => seller.questions, {
+    onDelete: 'CASCADE',
+  })
   seller: Seller;
 
   @OneToOne(() => Answer, { cascade: ['insert'] })
