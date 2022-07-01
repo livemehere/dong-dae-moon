@@ -4,7 +4,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 
 @Injectable()
 export class SchedulesService {
@@ -32,10 +32,40 @@ export class SchedulesService {
   }
 
   findAll() {
-    return this.scheduleRepository.find();
+    // FIXME:이거 select buyer 정보 안가져와짐 .. 왜이러지 ?
+    return this.scheduleRepository.find({
+      select: {
+        id: true,
+        start_date: true,
+        end_date: true,
+        buyer: {
+          id: true,
+        },
+      },
+    });
   }
 
-  findByBuyer(buyerId: number) {
+  findByBuyer(buyerId: number, query: any) {
+    const dateOption: boolean = query.year ? true : false;
+    if (dateOption) {
+      if (!query.month || !query.year) {
+        throw new BadRequestException(
+          'if you want filter by date, year and month required',
+        );
+      }
+      return this.scheduleRepository.find({
+        where: {
+          buyer: {
+            id: buyerId,
+          },
+          start_date: Between(
+            new Date(`${query.year}-${query.month}-1`),
+            new Date(`${query.year}-${query.month}-31`),
+          ),
+        },
+      });
+    }
+
     return this.scheduleRepository.find({
       where: {
         buyer: {

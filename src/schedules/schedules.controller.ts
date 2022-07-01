@@ -25,7 +25,7 @@ export class SchedulesController {
   findAll(@Query() query) {
     // 특정 바이어의 스케줄 목록
     if (query.buyerId) {
-      return this.schedulesService.findByBuyer(+query.buyerId);
+      return this.schedulesService.findByBuyer(+query.buyerId, query);
     }
 
     return this.schedulesService.findAll();

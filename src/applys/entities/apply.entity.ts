@@ -15,7 +15,10 @@ export class Apply {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Seller, (seller) => seller.applys, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Seller, (seller) => seller.applys, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   seller: Seller;
 
   @ManyToOne(() => Buyer, (buyer) => buyer.applys, { onDelete: 'CASCADE' })
