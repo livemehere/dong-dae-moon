@@ -22,6 +22,11 @@ export class BuyersController {
     return this.buyersService.create(createBuyerDto);
   }
 
+  @Get('search')
+  seachBuyer(@Query() query: any) {
+    return this.buyersService.search(query);
+  }
+
   @Get()
   findAll(@Query('uid') uid: string) {
     if (uid) {

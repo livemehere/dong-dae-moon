@@ -4,7 +4,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CreateBuyerDto } from './dto/create-buyer.dto';
 import { UpdateBuyerDto } from './dto/update-buyer.dto';
 import { Buyer } from './entities/buyer.entity';
@@ -42,6 +42,23 @@ export class BuyersService {
   findAll() {
     return this.buyerRepository.find({
       relations: ['images', 'schedules', 'applys'],
+    });
+  }
+
+  search(query: any) {
+    const word = query.word;
+
+    if (!word) throw new BadRequestException('word not be Empty');
+
+    return this.buyerRepository.find({
+      where: [
+        {
+          store_name: Like(`%${word}%`),
+        },
+        { tags: Like(`%${word}%`) },
+        { store_address: Like(`%${word}%`) },
+        { description: Like(`%${word}%`) },
+      ],
     });
   }
 
