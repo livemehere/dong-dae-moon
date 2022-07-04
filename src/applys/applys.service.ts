@@ -69,17 +69,6 @@ export class ApplysService {
   findAll() {
     return this.applyRepository.find({
       relations: ['seller', 'buyer', 'schedule'],
-      select: {
-        id: true,
-        status: true,
-        createdAt: true,
-        updatedAt: true,
-        seller: { id: true, nickname: true, agency_name: true },
-        buyer: {
-          id: true,
-          store_name: true,
-        },
-      },
     });
   }
 
@@ -91,22 +80,6 @@ export class ApplysService {
         },
       },
       relations: ['buyer', 'seller', 'schedule'],
-      select: {
-        id: true,
-        status: true,
-        createdAt: true,
-        schedule: {
-          id: true,
-        },
-        buyer: {
-          id: true,
-          store_name: true,
-        },
-        seller: {
-          id: true,
-          nickname: true,
-        },
-      },
     });
   }
 
@@ -117,16 +90,7 @@ export class ApplysService {
           id: sellerId,
         },
       },
-      relations: ['buyer'],
-      select: {
-        id: true,
-        status: true,
-        createdAt: true,
-        buyer: {
-          id: true,
-          store_name: true,
-        },
-      },
+      relations: ['buyer', 'seller', 'schedule'],
     });
   }
 

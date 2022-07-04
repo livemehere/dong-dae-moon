@@ -69,22 +69,6 @@ export class QuestionsService {
         id,
       },
       relations: ['buyer', 'seller', 'answer'],
-      select: {
-        id: true,
-        title: true,
-        content: true,
-        createdAt: true,
-        updatedAt: true,
-        buyer: {
-          id: true,
-          store_name: true,
-        },
-        seller: {
-          id: true,
-          nickname: true,
-          agency_name: true,
-        },
-      },
     });
   }
 
@@ -95,23 +79,7 @@ export class QuestionsService {
           id: buyerId,
         },
       },
-      relations: ['seller', 'answer'],
-      select: {
-        id: true,
-        title: true,
-        content: true,
-        createdAt: true,
-        updatedAt: true,
-        buyer: {
-          id: true,
-          store_name: true,
-        },
-        seller: {
-          id: true,
-          nickname: true,
-          agency_name: true,
-        },
-      },
+      relations: ['buyer', 'seller', 'answer'],
     });
   }
 
@@ -122,23 +90,7 @@ export class QuestionsService {
           id: sellerId,
         },
       },
-      relations: ['buyer', 'answer'],
-      select: {
-        id: true,
-        title: true,
-        content: true,
-        createdAt: true,
-        updatedAt: true,
-        buyer: {
-          id: true,
-          store_name: true,
-        },
-        seller: {
-          id: true,
-          nickname: true,
-          agency_name: true,
-        },
-      },
+      relations: ['buyer', 'seller', 'answer'],
     });
   }
 

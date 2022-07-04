@@ -35,14 +35,6 @@ export class SchedulesService {
     // FIXME:이거 select buyer 정보 안가져와짐 .. 왜이러지 ?
     return this.scheduleRepository.find({
       relations: ['buyer', 'applys'],
-      select: {
-        id: true,
-        start_date: true,
-        end_date: true,
-        buyer: {
-          id: true,
-        },
-      },
     });
   }
 
@@ -64,7 +56,7 @@ export class SchedulesService {
             new Date(`${query.year}-${query.month}-31`),
           ),
         },
-        relations: ['applys'],
+        relations: ['buyer', 'applys'],
       });
     }
 
@@ -74,7 +66,7 @@ export class SchedulesService {
           id: buyerId,
         },
       },
-      relations: ['applys'],
+      relations: ['buyer', 'applys'],
     });
   }
 
@@ -83,7 +75,7 @@ export class SchedulesService {
       where: {
         id,
       },
-      // relations: ['buyer'],
+      relations: ['buyer', 'applys'],
     });
   }
 
