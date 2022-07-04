@@ -1,7 +1,7 @@
 import { Schedule } from './../schedules/entities/schedule.entity';
 import { Seller } from './../sellers/entities/seller.entity';
 import { Apply } from './entities/apply.entity';
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateApplyDto } from './dto/create-apply.dto';
 import { UpdateApplyDto } from './dto/update-apply.dto';
@@ -69,6 +69,17 @@ export class ApplysService {
   findAll() {
     return this.applyRepository.find({
       relations: ['seller', 'buyer', 'schedule'],
+      select: {
+        id: true,
+        status: true,
+        createdAt: true,
+        updatedAt: true,
+        seller: { id: true, nickname: true, agency_name: true },
+        buyer: {
+          id: true,
+          store_name: true,
+        },
+      },
     });
   }
 
@@ -79,11 +90,18 @@ export class ApplysService {
           id: buyerId,
         },
       },
-      relations: ['seller'],
+      relations: ['buyer', 'seller', 'schedule'],
       select: {
         id: true,
         status: true,
         createdAt: true,
+        schedule: {
+          id: true,
+        },
+        buyer: {
+          id: true,
+          store_name: true,
+        },
         seller: {
           id: true,
           nickname: true,
@@ -106,6 +124,7 @@ export class ApplysService {
         createdAt: true,
         buyer: {
           id: true,
+          store_name: true,
         },
       },
     });

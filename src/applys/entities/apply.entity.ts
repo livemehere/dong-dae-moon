@@ -17,7 +17,6 @@ export class Apply {
 
   @ManyToOne(() => Seller, (seller) => seller.applys, {
     onDelete: 'CASCADE',
-    eager: true,
   })
   seller: Seller;
 

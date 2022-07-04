@@ -22,6 +22,6 @@ export class Schedule {
   @Column({ type: 'datetime' })
   end_date: Date;
 
-  @OneToMany(() => Apply, (apply) => apply.schedule, { eager: true })
+  @OneToMany(() => Apply, (apply) => apply.schedule)
   applys: Apply[];
 }
