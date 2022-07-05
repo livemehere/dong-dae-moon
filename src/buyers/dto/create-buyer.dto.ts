@@ -29,8 +29,8 @@ export class CreateBuyerDto {
   @IsString()
   store_address: string;
 
-  @IsString()
-  building_floor: string;
+  @IsNumberString()
+  building_floor_id: number;
 
   @IsString()
   building_section: string;

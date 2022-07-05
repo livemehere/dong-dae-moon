@@ -1,9 +1,12 @@
+import { Floor } from './../../building/entities/floor.entity';
+import { Building } from './../../building/entities/building.entity';
 import { Image } from './../../images/entities/image.entity';
 import { Answer } from './../../answers/entities/answer.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -49,8 +52,8 @@ export class Buyer {
   @Column({ type: 'text', comment: '사업자 등록증 사진 URL', nullable: true })
   business_registration: string;
 
-  @Column({ type: 'int', default: 0, comment: '빌딩 ID(참조)' })
-  building_id: number;
+  @ManyToOne(() => Building, (building) => building.buyers)
+  building: Building;
 
   @Column({ type: 'varchar', length: 100, comment: '가게 이름' })
   store_name: string;
@@ -78,12 +81,14 @@ export class Buyer {
   questions: Question[];
   // end --
 
-  @Column({
-    type: 'varchar',
-    length: 200,
-    comment: '빌딩에서의 가게가 위치한 층',
-  })
-  building_floor: string;
+  // FIXME: 여기 고치기
+  // @Column({
+  //   type: 'varchar',
+  //   length: 200,
+  //   comment: '빌딩에서의 가게가 위치한 층',
+  // })
+  @ManyToOne(() => Floor, (floor) => floor.buyers)
+  building_floor: Floor;
 
   @Column({
     type: 'varchar',

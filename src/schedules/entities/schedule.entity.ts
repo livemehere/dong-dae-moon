@@ -16,6 +16,9 @@ export class Schedule {
   @ManyToOne(() => Buyer, (buyer) => buyer.schedules)
   buyer: Buyer;
 
+  @Column({ default: false })
+  iscomfirm: boolean;
+
   @Column({ type: 'datetime' })
   start_date: Date;
 

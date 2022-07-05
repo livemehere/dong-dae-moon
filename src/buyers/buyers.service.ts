@@ -1,3 +1,6 @@
+import { Floor } from './../building/entities/floor.entity';
+import { CreateBuildingDto } from './../building/dto/create-building.dto';
+import { Building } from './../building/entities/building.entity';
 import {
   BadRequestException,
   ConflictException,
@@ -14,9 +17,37 @@ export class BuyersService {
   constructor(
     @InjectRepository(Buyer)
     private buyerRepository: Repository<Buyer>,
+
+    @InjectRepository(Building)
+    private buildingRepository: Repository<Building>,
+
+    @InjectRepository(Floor)
+    private floorRepository: Repository<Floor>,
   ) {}
 
   async create(createBuyerDto: CreateBuyerDto) {
+    const building = await this.buildingRepository.findOne({
+      where: {
+        id: createBuyerDto.building_id,
+      },
+    });
+
+    if (!building)
+      throw new BadRequestException(
+        `building id(${createBuyerDto.building_id}) is not exists`,
+      );
+
+    const floor = await this.floorRepository.findOne({
+      where: {
+        id: createBuyerDto.building_floor_id,
+      },
+    });
+
+    if (!floor)
+      throw new BadRequestException(
+        `floor id(${createBuyerDto.building_floor_id}) is not exists`,
+      );
+
     try {
       const newBuyer = new Buyer();
       newBuyer.uid = createBuyerDto.uid;
@@ -24,10 +55,10 @@ export class BuyersService {
       newBuyer.password = createBuyerDto.password;
       newBuyer.username = createBuyerDto.username;
       newBuyer.phone = createBuyerDto.phone;
-      newBuyer.building_id = createBuyerDto.building_id;
+      newBuyer.building = building;
       newBuyer.store_name = createBuyerDto.store_name;
       newBuyer.store_address = createBuyerDto.store_address;
-      newBuyer.building_floor = createBuyerDto.building_floor;
+      newBuyer.building_floor = floor;
       newBuyer.building_section = createBuyerDto.building_section;
       newBuyer.building_room = createBuyerDto.building_room;
       newBuyer.notification_agree = createBuyerDto.notification_agree;
@@ -41,7 +72,13 @@ export class BuyersService {
 
   findAll() {
     return this.buyerRepository.find({
-      relations: ['images', 'schedules', 'applys'],
+      relations: [
+        'images',
+        'schedules',
+        'applys',
+        'building',
+        'building_floor',
+      ],
     });
   }
 
@@ -59,13 +96,26 @@ export class BuyersService {
         { store_address: Like(`%${word}%`) },
         { description: Like(`%${word}%`) },
       ],
+      relations: [
+        'images',
+        'schedules',
+        'applys',
+        'building',
+        'building_floor',
+      ],
     });
   }
 
   findOne(id: number) {
     return this.buyerRepository.findOne({
       where: { id },
-      relations: ['images', 'schedules', 'applys'],
+      relations: [
+        'images',
+        'schedules',
+        'applys',
+        'building',
+        'building_floor',
+      ],
     });
   }
 
@@ -74,6 +124,13 @@ export class BuyersService {
       where: {
         uid,
       },
+      relations: [
+        'images',
+        'schedules',
+        'applys',
+        'building',
+        'building_floor',
+      ],
     });
   }
 

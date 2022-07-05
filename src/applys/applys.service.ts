@@ -102,6 +102,10 @@ export class ApplysService {
   }
 
   async update(id: number, updateApplyDto: UpdateApplyDto) {
+    console.log(updateApplyDto);
+    //TODO: if updatedApplyDto.status === 1
+    // 해당하는 schedule 찾아서 isConfirm true로 변경하기
+
     try {
       return await this.applyRepository.update(id, updateApplyDto);
     } catch (e) {
