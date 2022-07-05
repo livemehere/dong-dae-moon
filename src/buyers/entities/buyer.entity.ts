@@ -78,10 +78,10 @@ export class Buyer {
   questions: Question[];
   // end --
 
-  @ManyToOne(() => Building, (building) => building.buyers)
+  @ManyToOne(() => Building, (building) => building.buyers, { eager: true })
   building: Building;
 
-  @ManyToOne(() => Floor, (floor) => floor.buyers)
+  @ManyToOne(() => Floor, (floor) => floor.buyers, { eager: true })
   building_floor: Floor;
 
   @Column({
