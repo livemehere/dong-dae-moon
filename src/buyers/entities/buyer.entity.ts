@@ -52,9 +52,6 @@ export class Buyer {
   @Column({ type: 'text', comment: '사업자 등록증 사진 URL', nullable: true })
   business_registration: string;
 
-  @ManyToOne(() => Building, (building) => building.buyers)
-  building: Building;
-
   @Column({ type: 'varchar', length: 100, comment: '가게 이름' })
   store_name: string;
 
@@ -81,12 +78,9 @@ export class Buyer {
   questions: Question[];
   // end --
 
-  // FIXME: 여기 고치기
-  // @Column({
-  //   type: 'varchar',
-  //   length: 200,
-  //   comment: '빌딩에서의 가게가 위치한 층',
-  // })
+  @ManyToOne(() => Building, (building) => building.buyers)
+  building: Building;
+
   @ManyToOne(() => Floor, (floor) => floor.buyers)
   building_floor: Floor;
 
