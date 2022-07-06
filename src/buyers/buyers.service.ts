@@ -110,9 +110,6 @@ export class BuyersService {
     return this.buyerRepository.findOne({
       where: {
         id,
-        images: {
-          description: Not(Like('%사업자등록증%')),
-        },
       },
       relations: [
         'images',
