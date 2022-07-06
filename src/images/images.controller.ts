@@ -33,13 +33,14 @@ export class ImagesController {
     );
   }
 
-  @Post('business')
+  @Post('business/:id')
   @UseInterceptors(FileInterceptor('file'))
   async uploadBusinessFile(
     @UploadedFile() file,
     @Body() createBusinessImageDto: CreateBusinessImageDto,
+    @Param('id') id: string,
   ) {
-    return this.imagesService.uploadBusiness(file, +createBusinessImageDto.id);
+    return this.imagesService.uploadBusiness(file, +id);
   }
 
   @Get()
