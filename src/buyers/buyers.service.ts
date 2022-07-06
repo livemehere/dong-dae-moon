@@ -7,7 +7,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like, Repository } from 'typeorm';
+import { Like, Not, Repository } from 'typeorm';
 import { CreateBuyerDto } from './dto/create-buyer.dto';
 import { UpdateBuyerDto } from './dto/update-buyer.dto';
 import { Buyer } from './entities/buyer.entity';
@@ -108,7 +108,12 @@ export class BuyersService {
 
   findOne(id: number) {
     return this.buyerRepository.findOne({
-      where: { id },
+      where: {
+        id,
+        images: {
+          description: Not(Like('%사업자등록증%')),
+        },
+      },
       relations: [
         'images',
         'schedules',

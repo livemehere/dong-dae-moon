@@ -35,6 +35,20 @@ export class ImagesService {
       throw new BadRequestException(e);
     }
   }
+  async uploadBusiness(file, buyerId) {
+    try {
+      const { originalname } = file;
+      const bucketS3 = process.env.AWS_S3_BUCKET_NAME;
+      const result: any = await this.uploadS3(
+        file.buffer,
+        bucketS3,
+        originalname,
+      );
+      return this.create(result.Location, result.key, buyerId, '사업자등록증');
+    } catch (e) {
+      throw new BadRequestException(e);
+    }
+  }
 
   async uploadS3(file, bucket, name) {
     const s3 = this.getS3();
@@ -93,6 +107,26 @@ export class ImagesService {
       newImage.url = location;
       newImage.buyer = buyer;
       newImage.description = description;
+
+      // 이미지 업로드할 떄 사업자 등록증이라면 한개로 유지할 수 있도록 지우고 다시 생성
+      if (description === '사업자등록증') {
+        const prevImage = await this.imageRepository.findOne({
+          where: {
+            description: '사업자등록증',
+            buyer: {
+              id: buyerId,
+            },
+          },
+        });
+
+        if (prevImage) {
+          this.imageRepository.delete({ id: prevImage.id }); // image table 에서 삭제
+          this.deleteObject(process.env.AWS_S3_BUCKET_NAME, prevImage.key); // S3 에서 삭제
+        }
+
+        buyer.business_registration = location;
+        this.buyerRepository.save(buyer);
+      }
 
       return this.imageRepository.save(newImage);
     } catch (e) {

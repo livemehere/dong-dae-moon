@@ -1,3 +1,4 @@
+import { CreateBusinessImageDto } from './dto/create-business-image.dto';
 import {
   Controller,
   Get,
@@ -30,6 +31,15 @@ export class ImagesController {
       +createImageDto.id,
       createImageDto.description,
     );
+  }
+
+  @Post('business')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadBusinessFile(
+    @UploadedFile() file,
+    @Body() createBusinessImageDto: CreateBusinessImageDto,
+  ) {
+    return this.imagesService.uploadBusiness(file, +createBusinessImageDto.id);
   }
 
   @Get()
