@@ -66,6 +66,7 @@ export class BuyersService {
       newBuyer.tags = createBuyerDto.tags;
       return await this.buyerRepository.save(newBuyer);
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e.driverError.sqlMessage || e);
     }
   }

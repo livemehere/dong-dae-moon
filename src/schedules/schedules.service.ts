@@ -27,6 +27,7 @@ export class SchedulesService {
       newSchedule.end_date = createScheduleDto.end_date;
       return await this.scheduleRepository.save(newSchedule);
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e.driverError.sqlMessage || e);
     }
   }

@@ -62,6 +62,7 @@ export class ApplysService {
       newApply.schedule = schedule;
       return this.applyRepository.save(newApply);
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e.driverError.sqlMessage || e);
     }
   }

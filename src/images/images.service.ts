@@ -32,6 +32,7 @@ export class ImagesService {
       await this.create(result.Location, result.key, buyerId, description);
       return result;
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e);
     }
   }
@@ -46,6 +47,7 @@ export class ImagesService {
       );
       return this.create(result.Location, result.key, buyerId, '사업자등록증');
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e);
     }
   }
@@ -130,6 +132,7 @@ export class ImagesService {
 
       return this.imageRepository.save(newImage);
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e);
     }
   }

@@ -27,6 +27,7 @@ export class SellersService {
     try {
       return await this.sellerRepository.save(newSeller);
     } catch (e) {
+      console.log(e);
       throw new BadRequestException(e.driverError.sqlMessage || e);
     }
   }
