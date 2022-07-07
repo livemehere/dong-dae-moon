@@ -73,13 +73,7 @@ export class BuyersService {
 
   findAll() {
     return this.buyerRepository.find({
-      relations: [
-        'images',
-        'schedules',
-        'applys',
-        'building',
-        'building_floor',
-      ],
+      relations: ['schedules', 'applys', 'building', 'building_floor'],
     });
   }
 
@@ -97,13 +91,7 @@ export class BuyersService {
         { store_address: Like(`%${word}%`) },
         { description: Like(`%${word}%`) },
       ],
-      relations: [
-        'images',
-        'schedules',
-        'applys',
-        'building',
-        'building_floor',
-      ],
+      relations: ['schedules', 'applys', 'building', 'building_floor'],
     });
   }
 
@@ -112,13 +100,7 @@ export class BuyersService {
       where: {
         id,
       },
-      relations: [
-        'images',
-        'schedules',
-        'applys',
-        'building',
-        'building_floor',
-      ],
+      relations: ['schedules', 'applys', 'building', 'building_floor'],
     });
   }
 
@@ -127,13 +109,7 @@ export class BuyersService {
       where: {
         uid,
       },
-      relations: [
-        'images',
-        'schedules',
-        'applys',
-        'building',
-        'building_floor',
-      ],
+      relations: ['schedules', 'applys', 'building', 'building_floor'],
     });
   }
 

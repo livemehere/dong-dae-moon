@@ -65,7 +65,7 @@ export class Buyer {
   @Column({ type: 'varchar', length: 255, comment: '태그들' })
   tags: string;
 
-  @OneToMany(() => Image, (image) => image.buyer)
+  @OneToMany(() => Image, (image) => image.buyer, { eager: true })
   images: Image[];
 
   @OneToMany(() => Schedule, (schedule) => schedule.buyer)
