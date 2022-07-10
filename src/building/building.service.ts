@@ -17,7 +17,6 @@ export class BuildingService {
     private floorRepository: Repository<Floor>,
   ) {}
 
-  // { buildingName: 'testBuilding', floor: [ 'B1', '1층', '2층' ] }
   async create(createBuildingDto: CreateBuildingDto) {
     console.log(createBuildingDto);
     return 'This action adds a new building';

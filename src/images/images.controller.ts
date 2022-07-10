@@ -59,7 +59,7 @@ export class ImagesController {
   }
 
   @Delete()
-  remove(@Body('key') key: string) {
+  remove(@Param('key') key: string) {
     return this.imagesService.deleteObject(process.env.AWS_S3_BUCKET_NAME, key);
   }
 }
