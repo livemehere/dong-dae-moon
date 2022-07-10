@@ -58,7 +58,7 @@ export class ImagesController {
     return this.imagesService.update(+id, updateImageDto);
   }
 
-  @Delete()
+  @Delete(':key')
   remove(@Param('key') key: string) {
     return this.imagesService.deleteObject(process.env.AWS_S3_BUCKET_NAME, key);
   }
